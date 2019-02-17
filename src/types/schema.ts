@@ -87,4 +87,31 @@ export class Minter extends Entity {
   set id(value: string) {
     this.set("id", Value.fromString(value));
   }
+
+  get address(): string {
+    let value = this.get("address");
+    return value.toString();
+  }
+
+  set address(value: string) {
+    this.set("address", Value.fromString(value));
+  }
+
+  get totalMinted(): BigInt {
+    let value = this.get("totalMinted");
+    return value.toBigInt();
+  }
+
+  set totalMinted(value: BigInt) {
+    this.set("totalMinted", Value.fromBigInt(value));
+  }
+
+  get totalBurned(): BigInt {
+    let value = this.get("totalBurned");
+    return value.toBigInt();
+  }
+
+  set totalBurned(value: BigInt) {
+    this.set("totalBurned", Value.fromBigInt(value));
+  }
 }

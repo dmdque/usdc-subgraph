@@ -6,4 +6,7 @@ type User @entity {
 
 type Minter @entity {
   id: ID!
+  address: String!
+  totalMinted: BigInt!
+  totalBurned: BigInt!
 }

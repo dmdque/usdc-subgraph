@@ -20,6 +20,8 @@ dataSources:
         - name: FiatTokenV1
           file: FiatTokenV1/abis/FiatTokenV1.json
       eventHandlers:
+        - event: 'Burn(address,uint256)'
+          handler: handleBurn
         - event: 'Mint(address,address,uint256)'
           handler: handleMint
         - event: 'Transfer(address,address,uint256)'
