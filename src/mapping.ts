@@ -12,14 +12,15 @@ export function handleMint(event: Mint): void {
   user.balance = user.balance + event.params.amount
   user.save()
 
-
   let minter = Minter.load(event.params.minter.toHex())
   if (minter == null) {
     minter = new Minter(event.params.minter.toHex())
-    minter.address = event.params.to.toHex()
+    minter.address = event.params.minter.toHex()
     minter.totalMinted = BigInt.fromI32(0)
+    minter.totalBurned = BigInt.fromI32(0)
   }
   minter.totalMinted = minter.totalMinted + event.params.amount
+  minter.save()
 }
 
 export function handleBurn(event: Burn): void {
@@ -36,9 +37,11 @@ export function handleBurn(event: Burn): void {
   if (minter == null) {
     minter = new Minter(event.params.burner.toHex())
     minter.address = event.params.burner.toHex()
+    minter.totalMinted = BigInt.fromI32(0)
     minter.totalBurned = BigInt.fromI32(0)
   }
   minter.totalBurned = minter.totalBurned + event.params.amount
+  minter.save()
 }
 
 export function handleTransfer(event: Transfer): void {
