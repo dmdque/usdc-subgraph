@@ -3,15 +3,6 @@ import { User, Minter } from './types/schema'
 import { BigInt } from '@graphprotocol/graph-ts'
 
 export function handleMint(event: Mint): void {
-  let user = User.load(event.params.to.toHex())
-  if (user == null) {
-    user = new User(event.params.to.toHex());
-    user.address = event.params.to.toHex()
-    user.balance = BigInt.fromI32(0)
-  }
-  user.balance = user.balance + event.params.amount
-  user.save()
-
   let minter = Minter.load(event.params.minter.toHex())
   if (minter == null) {
     minter = new Minter(event.params.minter.toHex())
@@ -24,15 +15,6 @@ export function handleMint(event: Mint): void {
 }
 
 export function handleBurn(event: Burn): void {
-  let user = User.load(event.params.burner.toHex())
-  if (user == null) {
-    user = new User(event.params.burner.toHex());
-    user.address = event.params.burner.toHex()
-    user.balance = BigInt.fromI32(0)
-  }
-  user.balance = user.balance - event.params.amount
-  user.save()
-
   let minter = Minter.load(event.params.burner.toHex())
   if (minter == null) {
     minter = new Minter(event.params.burner.toHex())
