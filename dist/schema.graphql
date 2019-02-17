@@ -6,6 +6,4 @@ type User @entity {
 
 type Minter @entity {
   id: ID!
-  totalMinted: BigInt!
-  totalBurned: BigInt!
 }
