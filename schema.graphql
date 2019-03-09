@@ -2,6 +2,7 @@ type User @entity {
   id: ID!
   address: String!
   balance: BigInt!
+  transactionCount: Int!
 }
 
 type Minter @entity {
@@ -9,4 +10,14 @@ type Minter @entity {
   address: String!
   totalMinted: BigInt!
   totalBurned: BigInt!
+}
+
+type UserCounter @entity {
+  id: ID!
+  count: Int!
+}
+
+type MinterCounter @entity {
+  id: ID!
+  count: Int!
 }

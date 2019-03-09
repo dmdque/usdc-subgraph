@@ -16,6 +16,9 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - User
+        - Minter
+        - UserCounter
+        - MinterCounter
       abis:
         - name: FiatTokenV1
           file: ./abis/FiatTokenV1.json
