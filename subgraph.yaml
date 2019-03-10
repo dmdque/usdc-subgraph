@@ -19,6 +19,7 @@ dataSources:
         - Minter
         - UserCounter
         - MinterCounter
+        - TxCounter
       abis:
         - name: FiatTokenV1
           file: ./abis/FiatTokenV1.json

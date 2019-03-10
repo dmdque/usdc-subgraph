@@ -204,3 +204,83 @@ export class MinterCounter extends Entity {
     this.set("count", Value.fromI32(value));
   }
 }
+
+export class TransactionCounter extends Entity {
+  constructor(id: string) {
+    this.entries = new Array(0);
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save TransactionCounter entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save TransactionCounter entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("TransactionCounter", id.toString(), this);
+  }
+
+  static load(id: string): TransactionCounter | null {
+    return store.get("TransactionCounter", id) as TransactionCounter | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get count(): i32 {
+    let value = this.get("count");
+    return value.toI32();
+  }
+
+  set count(value: i32) {
+    this.set("count", Value.fromI32(value));
+  }
+}
+
+export class TotalSupply extends Entity {
+  constructor(id: string) {
+    this.entries = new Array(0);
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save TotalSupply entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save TotalSupply entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("TotalSupply", id.toString(), this);
+  }
+
+  static load(id: string): TotalSupply | null {
+    return store.get("TotalSupply", id) as TotalSupply | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get supply(): BigInt {
+    let value = this.get("supply");
+    return value.toBigInt();
+  }
+
+  set supply(value: BigInt) {
+    this.set("supply", Value.fromBigInt(value));
+  }
+}

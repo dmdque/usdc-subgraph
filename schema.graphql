@@ -21,3 +21,13 @@ type MinterCounter @entity {
   id: ID!
   count: Int!
 }
+
+type TransactionCounter @entity {
+  id: ID!
+  count: Int!
+}
+
+type TotalSupply @entity {
+  id: ID!
+  supply: BigInt!
+}
