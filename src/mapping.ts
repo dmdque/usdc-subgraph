@@ -42,6 +42,11 @@ export function handleBurn(event: Burn): void {
       minterCounter.count = minterCounter.count + 1
     }
     minterCounter.save()
+    let day = (event.block.timestamp / BigInt.fromI32(60 * 60 * 24))
+    minterCounter.id = day.toString()
+    minterCounter.save()
+
+    //let dailyMinterCounter = MinterCounter.load('singleton')
   }
   minter.totalBurned = minter.totalBurned + event.params.amount
   minter.save()
@@ -68,6 +73,9 @@ export function handleTransfer(event: Transfer): void {
     } else {
       userCounter.count = userCounter.count + 1
     }
+    userCounter.save()
+    let day = (event.block.timestamp / BigInt.fromI32(60 * 60 * 24))
+    userCounter.id = day.toString()
     userCounter.save()
   }
   userTo.balance = userTo.balance + event.params.value
